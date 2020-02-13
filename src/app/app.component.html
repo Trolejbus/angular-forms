@@ -1,0 +1,37 @@
+<div class="form-container">
+  <form [formGroup]="formGroup">
+    <h1 class="amatic-bolded header-text">Spędź z nami czas</h1>
+    <div class="form-group row">
+      <label for="staticEmail" class="col-sm-3 col-form-label amatic">Imię i Nazwisko *</label>
+      <div class="col-sm-9">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <input #nameControl type="text" pInputText placeholder="Username" formControlName="name" *animation-icon>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="staticEmail" class="col-sm-3 col-form-label amatic">Email</label>
+      <div class="col-sm-9">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-envelope" style="line-height: 1.25;"></i></span>
+          <input type="text" pInputText placeholder="Email" formControlName="email">         
+        </div>
+        <small id="passwordHelpInline" class="text-muted">
+          Jeżeli podasz otrzymasz przypomnienie, oraz dodatkowe materiały.
+        </small>
+      </div>
+    </div>
+    <div>
+      <p-button
+        class="submit-button"
+        [styleClass]="submitting ? 'ui-button-secondary' : 'ui-button-primary'"
+        [ngClass]="{ 'ui-button-secondary' : submitting }"
+        [label]="submitting ? 'Zapisuję' : 'Zapisz się'"
+        [icon]="submitting ? 'pi pi-spin pi-spinner' : 'pi pi-check'"
+        iconPos="left"
+        (click)="submit($event)"></p-button>
+    </div>
+    <div class="clearfix"></div>
+  </form>
+</div>

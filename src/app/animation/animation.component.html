@@ -1,0 +1,18 @@
+<lottie-animation-view
+    *ngIf="animation == AnimationType.Editing"
+    [options]="lottieConfigEdit"
+    [width]="25"
+    [height]="25"
+    (animCreated)="handleAnimationEdit($event)"></lottie-animation-view>
+<lottie-animation-view
+    *ngIf="animation == AnimationType.EditOk"
+    [options]="lottieConfigEditOk"
+    [width]="25"
+    [height]="25"
+    (animCreated)="handleAnimationEditOk($event)"></lottie-animation-view>
+<lottie-animation-view
+    *ngIf="animation == AnimationType.EditWrong"
+    [options]="lottieConfigEditWrong"
+    [width]="25"
+    [height]="25"
+    (animCreated)="handleAnimationEditWrong($event)"></lottie-animation-view>
