@@ -8,7 +8,7 @@
     </div>
 </p-toolbar>
 
-<div class="section row" *ngFor="let service of formGroup.get('services').controls">
+<div class="section row" *ngFor="let service of formGroup.get('services').controls" [formGroup]="service">
     <div class="col-sm-2 date-container">
         <div>Od: {{service.get('from').value}}:00</div>
         <div>Do: {{service.get('to').value}}:00</div>
@@ -17,9 +17,10 @@
         <img class="icon" [src]="'../../assets/' + getIcon(service.get('type').value)" alt="boat" />
         <div *ngIf="service.get('type').value == ServiceType.Cinema">
             <i *ngIf="!moviesLoaded" class="pi pi-spin pi-spinner" style="font-size: 3em"></i>
-            <div *ngIf="moviesLoaded">
-                <p-dropdown [options]="cities1"></p-dropdown>
-            </div>
+            <select class="select-movie" *ngIf="moviesLoaded" formControlName="movie">
+                <option [value]="null">Wybierz Film</option>
+                <option *ngFor="let movie of movies" [value]="movie">{{movie.name}}</option>
+            </select>
         </div>   
     </div>
 </div>

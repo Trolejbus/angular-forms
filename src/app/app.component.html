@@ -1,48 +1,97 @@
 <div class="form-container">
-  <form [formGroup]="formGroup">
+    <form [formGroup]="submitFormGroup">
+        <h1 class="amatic-bolded header-text">Spędź z nami czas</h1>
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-3 col-form-label amatic">Imię i Nazwisko *</label>
+            <div class="col-sm-9">
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+
+                    <input type="text" pInputText placeholder="Imię i nazwisko" formControlName="name" />
+
+                    <small *ngIf="submitFormGroup.get('name').touched &&
+                        submitFormGroup.get('name').hasError('required')" id="passwordHelpInline" class="text-muted error-text">
+                       Pole jest wymagane
+                    </small>
+                    <small *ngIf="submitFormGroup.get('name').touched &&
+                        submitFormGroup.get('name').hasError('maxlength')" id="passwordHelpInline" class="text-muted error-text">
+                        Imię jest zbyt długie
+                     </small>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-3 col-form-label amatic">Email</label>
+            <div class="col-sm-9">
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="pi pi-envelope" style="line-height: 1.25;"></i></span>
+                
+                <input type="text" pInputText placeholder="Email" formControlName="email">         
+
+            </div>
+              <small id="passwordHelpInline" class="text-muted">
+                    Wpisz swojego maila, a otrzymasz przypomnienie, oraz dodatkowe materiały.
+              </small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label amatic">Kim jesteś?</label>
+            <div class="col-sm-9">
+                <app-picture-component formControlName="type"></app-picture-component>        
+            </div>
+        </div>
+
+        
+        <div class="clearfix"></div>
+
+        <app-couple *ngIf="submitFormGroup.get('couple') != null" [formGroup]="submitFormGroup.get('couple')"></app-couple>
+        <app-girl *ngIf="submitFormGroup.get('girl') != null" [formGroup]="submitFormGroup.get('girl')"></app-girl>
+        <app-boy *ngIf="submitFormGroup.get('boy') != null" [formGroup]="submitFormGroup.get('boy')"></app-boy>
+    
+        <div class="button-container">
+
+            <p-button
+                label="Test"
+                [styleClass]="ui-button-secondary"
+                (click)="test($event)"></p-button>
+            <p-button
+                label="Wyczyść"
+                [styleClass]="ui-button-secondary"
+                (click)="clear($event)"></p-button>
+            <p-button
+                [disabled]="submitFormGroup.invalid"
+
+                class="submit-button"
+                [styleClass]="submitting ? 'ui-button-secondary' : 'ui-button-primary'"
+                [label]="submitting ? 'Zapisuję' : 'Zapisz się'"
+                [icon]="submitting ? 'pi pi-spin pi-spinner' : 'pi pi-check'"
+                iconPos="left"
+                (click)="submit($event)"></p-button>
+        </div>
+
+    </form>
+  <!--
+                  
+            
+    
+    <form [formGroup]="formGroup">
     <h1 class="amatic-bolded header-text">Spędź z nami czas</h1>
+
     <div class="form-group row">
-      <label for="staticEmail" class="col-sm-3 col-form-label amatic">Imię i Nazwisko *</label>
-      <div class="col-sm-9">
-        <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <input #nameControl type="text" pInputText placeholder="Username" formControlName="name">
-        </div>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="staticEmail" class="col-sm-3 col-form-label amatic">Email</label>
-      <div class="col-sm-9">
-        <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-envelope" style="line-height: 1.25;"></i></span>
-          <input type="text" pInputText placeholder="Email" formControlName="email">         
-        </div>
-        <small id="passwordHelpInline" class="text-muted">
-          Wpisz swojego maila, a otrzymasz przypomnienie, oraz dodatkowe materiały.
-        </small>
-      </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-3 col-form-label amatic">Kim jesteś?</label>
+        <label for="staticEmail" class="col-sm-3 col-form-label amatic">Pesel</label>
         <div class="col-sm-9">
-            <app-picture-component formControlName="type"></app-picture-component>        
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+            <input #nameControl type="text" pInputText placeholder="pesel" formControlName="pesel">
+          </div>
         </div>
-    </div>
+      </div>
 
-    <app-couple *ngIf="formGroup.get('couple') != null" [formGroup]="formGroup.get('couple')"></app-couple>
-    <app-girl *ngIf="formGroup.get('girl') != null" [formGroup]="formGroup.get('girl')"></app-girl>
-    <app-boy *ngIf="formGroup.get('boy') != null" [formGroup]="formGroup.get('boy')"></app-boy>
 
-    <div>
-      <p-button
-        class="submit-button"
-        [styleClass]="submitting ? 'ui-button-secondary' : 'ui-button-primary'"
-        [ngClass]="{ 'ui-button-secondary' : submitting }"
-        [label]="submitting ? 'Zapisuję' : 'Zapisz się'"
-        [icon]="submitting ? 'pi pi-spin pi-spinner' : 'pi pi-check'"
-        iconPos="left"
-        (click)="submit($event)"></p-button>
-    </div>
-    <div class="clearfix"></div>
-  </form>
+
+    
+  </form>-->
 </div>

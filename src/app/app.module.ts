@@ -14,8 +14,6 @@ import { CoupleComponent } from './couple/couple.component';
 import { GirlComponent } from './girl/girl.component';
 import { BoyComponent } from './boy/boy.component';
 import { ToolbarModule } from 'primeng/toolbar';
-import { DropdownModule } from 'primeng/dropdown';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MoviesService } from './services/movies.service';
 
 @NgModule({
@@ -36,8 +34,6 @@ import { MoviesService } from './services/movies.service';
     FormsModule,
     ReactiveFormsModule,
     ToolbarModule,
-    DropdownModule,
-    BrowserAnimationsModule
   ],
   providers: [
       MoviesService

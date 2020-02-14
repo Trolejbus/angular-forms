@@ -11,20 +11,12 @@ import { Movie } from '../model/movie.model';
 })
 export class CoupleComponent implements OnInit {
 
-    public cities1 = [
-        {label:'Select City', value:null},
-        {label:'New York', value:{id:1, name: 'New York', code: 'NY'}},
-        {label:'Rome', value:{id:2, name: 'Rome', code: 'RM'}},
-        {label:'London', value:{id:3, name: 'London', code: 'LDN'}},
-        {label:'Istanbul', value:{id:4, name: 'Istanbul', code: 'IST'}},
-        {label:'Paris', value:{id:5, name: 'Paris', code: 'PRS'}}
-    ];
 
     @Input()
     public formGroup: FormGroup;
     public ServiceType = ServiceType;
-    public moviesLoaded: boolean;
-    public movies: Promise<Movie[]>;
+    public moviesLoaded: boolean = false;
+    public movies: Movie[];
 
     constructor(private movieService: MoviesService) { }
 
@@ -39,12 +31,13 @@ export class CoupleComponent implements OnInit {
 
     public addCinema(): void {
         let formGroup = this.getBaseServiceFormGroup(ServiceType.Cinema);
+        formGroup.addControl('movie', new FormControl());
         this.loadMovies();
         this.addToService(formGroup);
     }
 
-    public loadMovies(): void {
-        this.movies = this.movieService.getAll();
+    public async loadMovies(): Promise<void> {
+        this.movies = await this.movieService.getAll();
         this.moviesLoaded = true;
     }
 

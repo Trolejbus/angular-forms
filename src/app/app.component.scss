@@ -1,6 +1,7 @@
 .form-container {
     margin-top: 240px;
     margin-left: 200px;
+    margin-bottom: 200px;
     background-color: #EEE;
     width: 800px;
     -webkit-box-shadow: -1px 2px 8px 0px rgba(255,59,59,1);
@@ -31,4 +32,18 @@
     display: block;
     float: left;
     margin: 8px 8px 0px 8px;
+}
+
+.button-container {
+    margin-top: 20px;
+}
+
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+.error-text {
+    color: red!important;
+    margin-top: 20px;
+    margin-left: 10px;
 }
