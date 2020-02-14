@@ -1,0 +1,16 @@
+.section {
+    border-top: 1px dotted gray;
+}
+
+.icon {
+    width: 64px;
+    display: block;
+    float: left;
+    margin:0px 5px;
+    border: 1px solid gray;
+    cursor: pointer;
+}
+
+.date-container {
+    border-right: 1px dotted gray;
+}

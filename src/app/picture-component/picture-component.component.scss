@@ -1,0 +1,27 @@
+.img-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.img-container img {
+    width: 170px;
+    transition: 0.5s;
+    border: 3px solid white;
+    cursor: pointer;
+}
+
+img.disabled {
+    filter: grayscale(100%);
+}
+
+img.not-selected {
+    filter: blur(3px);
+}
+
+.selected {
+    -webkit-box-shadow: 0px 0px 14px 9px rgba(255,247,89,1);
+    -moz-box-shadow: 0px 0px 14px 9px rgba(255,247,89,1);
+    box-shadow: 0px 0px 14px 9px rgba(255,247,89,1);
+    border: 3px solid gold;
+    transform: rotate(5deg);
+}

@@ -19,7 +19,7 @@ export class AnimationDirective implements OnInit {
         const componentRef = this.viewContainer.createComponent(componentFactory);
 
         (componentRef.instance as AnimationComponent).animation = AnimationType.EditOk;
-        (componentRef.instance as AnimationComponent).className = 'test';
+        //(componentRef.instance as AnimationComponent).className = 'test';
     }
 
   

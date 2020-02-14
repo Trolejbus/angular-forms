@@ -6,7 +6,7 @@
       <div class="col-sm-9">
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <input #nameControl type="text" pInputText placeholder="Username" formControlName="name" *animation-icon>
+          <input #nameControl type="text" pInputText placeholder="Username" formControlName="name">
         </div>
       </div>
     </div>
@@ -18,10 +18,21 @@
           <input type="text" pInputText placeholder="Email" formControlName="email">         
         </div>
         <small id="passwordHelpInline" class="text-muted">
-          Jeżeli podasz otrzymasz przypomnienie, oraz dodatkowe materiały.
+          Wpisz swojego maila, a otrzymasz przypomnienie, oraz dodatkowe materiały.
         </small>
       </div>
     </div>
+    <div class="form-group row">
+        <label class="col-sm-3 col-form-label amatic">Kim jesteś?</label>
+        <div class="col-sm-9">
+            <app-picture-component formControlName="type"></app-picture-component>        
+        </div>
+    </div>
+
+    <app-couple *ngIf="formGroup.get('couple') != null" [formGroup]="formGroup.get('couple')"></app-couple>
+    <app-girl *ngIf="formGroup.get('girl') != null" [formGroup]="formGroup.get('girl')"></app-girl>
+    <app-boy *ngIf="formGroup.get('boy') != null" [formGroup]="formGroup.get('boy')"></app-boy>
+
     <div>
       <p-button
         class="submit-button"

@@ -9,12 +9,24 @@ import { AnimationComponent } from './animation/animation.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AnimationDirective } from './animation/animation-icon.directive';
+import { PictureComponentComponent } from './picture-component/picture-component.component';
+import { CoupleComponent } from './couple/couple.component';
+import { GirlComponent } from './girl/girl.component';
+import { BoyComponent } from './boy/boy.component';
+import { ToolbarModule } from 'primeng/toolbar';
+import { DropdownModule } from 'primeng/dropdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MoviesService } from './services/movies.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     AnimationComponent,
-    AnimationDirective
+    AnimationDirective,
+    PictureComponentComponent,
+    CoupleComponent,
+    GirlComponent,
+    BoyComponent
   ],
   imports: [
     BrowserModule,
@@ -22,9 +34,14 @@ import { AnimationDirective } from './animation/animation-icon.directive';
     ButtonModule,
     LottieAnimationViewModule.forRoot(),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToolbarModule,
+    DropdownModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+      MoviesService
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     AnimationComponent
