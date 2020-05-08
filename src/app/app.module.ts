@@ -19,6 +19,10 @@ import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { EmailService } from './services/email.service';
 import { CustomEmailValidator } from './validators/custom-email.validator';
+import { DatePipe } from '@angular/common';
+import { CoupleController } from './controllers/couple.controller';
+import { GirlController } from './controllers/girl.controller';
+import { BoyController } from './controllers/boy.controller';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,7 @@ import { CustomEmailValidator } from './validators/custom-email.validator';
     PictureComponentComponent,
     CoupleComponent,
     GirlComponent,
-    BoyComponent
+    BoyComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +49,10 @@ import { CustomEmailValidator } from './validators/custom-email.validator';
       MoviesService,
       EmailService,
       CustomEmailValidator,
+      DatePipe,
+      BoyController,
+      GirlController,
+      CoupleController,
   ],
   bootstrap: [AppComponent],
   entryComponents: [

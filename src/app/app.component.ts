@@ -6,6 +6,7 @@ import { GirlController } from './controllers/girl.controller';
 import { CoupleController } from './controllers/couple.controller';
 import { PeselValidator } from './validators/pesel.validator';
 import { CustomEmailValidator } from './validators/custom-email.validator';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -18,16 +19,21 @@ export class AppComponent {
     public submitting: boolean = false;
 
     private controllers: FormController[] = [
-        new BoyController(),
-        new GirlController(),
-        new CoupleController()
+        this.boyController,
+        this.girlController,
+        this.coupleController
     ];
 
     /* FormControl
     FormGroup 
     FormArray */
 
-    constructor(private emailValidator: CustomEmailValidator) {
+    constructor(private emailValidator: CustomEmailValidator,
+        private datePipe: DatePipe,
+        private coupleController: CoupleController,
+        private boyController: BoyController,
+        private girlController: GirlController) {
+
         this.buildFormGroup();
         
     }
@@ -42,9 +48,11 @@ export class AppComponent {
         }, PeselValidator.isModelValid('birthdate', 'pesel'));
         this.initializeControllers();
         var item = localStorage.getItem('form');
-        
         if(item != null) {
             let itemParsed = JSON.parse(item);
+            itemParsed.birthdate = new Date(itemParsed.birthdate);
+            this.patchValueToControllers(itemParsed);
+
             this.submitFormGroup.patchValue(itemParsed);
         }
     }
@@ -69,6 +77,8 @@ export class AppComponent {
     public async save(): Promise<void> {
         return new Promise((resolve) => {
             setTimeout(() => {
+                let savedValue = this.submitFormGroup.value;
+                savedValue.birthdate = this.datePipe.transform(savedValue.birthdate, 'yyyy-MM-dd');
                 console.log(this.submitFormGroup.value);
                 localStorage.setItem('form', JSON.stringify(this.submitFormGroup.value));
                 resolve();
@@ -98,6 +108,13 @@ export class AppComponent {
         })
     }
 
+    private patchValueToControllers(itemParsed: any): void {
+        this.controllers.forEach(c => {
+            c.pathValue(this.submitFormGroup, itemParsed);
+        })
+    }
+
+
     //
 
     /* ==== */
@@ -109,7 +126,7 @@ export class AppComponent {
 
 
     this.buildFormGroup();
-        this.initializeControllers();
+        
  
 
     public buildFormGroup(): void {

@@ -2,7 +2,9 @@ import { FormController } from './form.controller';
 import { FormGroup } from '@angular/forms';
 import { FormType } from '../enums/form-type.enum';
 import { Subscription } from 'rxjs';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class GirlController extends FormController {
     private typeSubscription: Subscription;
     private formGroup: FormGroup;

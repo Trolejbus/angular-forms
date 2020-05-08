@@ -1,6 +1,7 @@
 import { FormGroup } from '@angular/forms';
 
 export abstract class FormController {
+
     public activated: boolean;
 
     public initialize(formGroup: FormGroup): void {
@@ -8,6 +9,10 @@ export abstract class FormController {
     }
 
     public uninitialize(formGroup: FormGroup): void {
+        
+    }
+
+    public pathValue(submitFormGroup: FormGroup, itemParsed: any): void {
         
     }
 

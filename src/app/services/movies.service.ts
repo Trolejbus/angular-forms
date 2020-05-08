@@ -7,9 +7,12 @@ export class MoviesService {
         return new Promise((resolve) => {
             setTimeout(() => {
                 resolve([
-                    { name: 'Nietykalni' },
-                    { name: 'Kolejne romansidło' },
-                    { name: 'Greglonia' },
+                    { name: 'Skazani na Sharepointa' },
+                    { name: 'Nietestowalni' },
+                    { name: 'SiiSiiland' },
+                    { name: 'Lista Jsona' },
+                    { name: 'Bug sam w DOMie' },
+                    { name: 'Leon programista' },
                     { name: 'O kimś kto lubi brukselki' },
                 ]);
             }, 2000);

@@ -1,10 +1,10 @@
 
 <p-toolbar>
     <div class="ui-toolbar-group-left">
-        <img class="icon" src="../../assets/boat.png" (click)="addBoat()" alt="boat" />
-        <img class="icon" src="../../assets/cinema.png" (click)="addCinema()" alt="cinema" />
-        <img class="icon" src="../../assets/dinner.png" (click)="addDinner()" alt="dinner" />
-        <img class="icon" src="../../assets/drinks.png" (click)="addDrinks()" alt="drinks" />
+        <img class="icon" src="../../assets/boat.png" (click)="coupleController.addBoat()" alt="boat" />
+        <img class="icon" src="../../assets/cinema.png" (click)="coupleController.addCinema()" alt="cinema" />
+        <img class="icon" src="../../assets/dinner.png" (click)="coupleController.addDinner()" alt="dinner" />
+        <img class="icon" src="../../assets/drinks.png" (click)="coupleController.addDrinks()" alt="drinks" />
     </div>
 </p-toolbar>
 
@@ -16,10 +16,10 @@
     <div class="col-sm-10">
         <img class="icon" [src]="'../../assets/' + getIcon(service.get('type').value)" alt="boat" />
         <div *ngIf="service.get('type').value == ServiceType.Cinema">
-            <i *ngIf="!moviesLoaded" class="pi pi-spin pi-spinner" style="font-size: 3em"></i>
-            <select class="select-movie" *ngIf="moviesLoaded" formControlName="movie">
+            <i *ngIf="!coupleController.moviesLoaded" class="pi pi-spin pi-spinner" style="font-size: 3em"></i>
+            <select class="select-movie" *ngIf="coupleController.moviesLoaded" formControlName="movie">
                 <option [value]="null">Wybierz Film</option>
-                <option *ngFor="let movie of movies" [value]="movie">{{movie.name}}</option>
+                <option *ngFor="let movie of coupleController.movies" [value]="movie.name">{{movie.name}}</option>
             </select>
         </div>   
     </div>
