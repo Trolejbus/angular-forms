@@ -7,6 +7,7 @@ import { CoupleController } from './controllers/couple.controller';
 import { PeselValidator } from './validators/pesel.validator';
 import { CustomEmailValidator } from './validators/custom-email.validator';
 import { DatePipe } from '@angular/common';
+import { CopyController } from './controllers/copy.controller';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,13 @@ export class AppComponent {
     private controllers: FormController[] = [
         this.boyController,
         this.girlController,
-        this.coupleController
+        this.coupleController,
+        new CopyController("from", "to"),
+        new CopyController(
+            "pesel",
+            "birthdate",
+            (value) => this.getBirthDateFromPesel(value),
+            (value, source, target) => source.valid),
     ];
 
     /* FormControl
@@ -45,6 +52,8 @@ export class AppComponent {
             'pesel': new FormControl('', Validators.compose([PeselValidator.isValid(), Validators.required])),
             'birthdate': new FormControl(null, Validators.required),
             'type': new FormControl(),
+            'from': new FormControl(),
+            'to': new FormControl(),
         }, PeselValidator.isModelValid('birthdate', 'pesel'));
         this.initializeControllers();
         var item = localStorage.getItem('form');
@@ -88,7 +97,8 @@ export class AppComponent {
 
     public clear(event: Event): void {
         event.preventDefault();
-        this.submitFormGroup.reset();
+        console.log(this.submitFormGroup)
+        this.submitFormGroup.reset(true);
         localStorage.removeItem('form');
     }
 
@@ -112,6 +122,10 @@ export class AppComponent {
         this.controllers.forEach(c => {
             c.pathValue(this.submitFormGroup, itemParsed);
         })
+    }
+
+    private getBirthDateFromPesel(value: any): any {
+        return new Date(`19${value[0]}${value[1]}/${value[2]}${value[3]}/${value[4]}${value[5]}`);
     }
 
 
