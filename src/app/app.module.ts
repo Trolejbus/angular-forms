@@ -15,6 +15,8 @@ import { GirlComponent } from './girl/girl.component';
 import { BoyComponent } from './boy/boy.component';
 import { ToolbarModule } from 'primeng/toolbar';
 import { MoviesService } from './services/movies.service';
+import { CalendarModule } from 'primeng/calendar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -28,12 +30,14 @@ import { MoviesService } from './services/movies.service';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ButtonModule,
     LottieAnimationViewModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     ToolbarModule,
+    CalendarModule,
   ],
   providers: [
       MoviesService

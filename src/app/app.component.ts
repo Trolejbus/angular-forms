@@ -37,7 +37,8 @@ export class AppComponent {
         this.submitFormGroup = new FormGroup({
             'name': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(10)])),
             'email': new FormControl(),
-            'type': new FormControl()
+            'type': new FormControl(),
+            'birthdate': new FormControl()
         });
         this.initializeControllers();
         var item = localStorage.getItem('form');
