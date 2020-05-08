@@ -16,7 +16,9 @@ import { BoyComponent } from './boy/boy.component';
 import { ToolbarModule } from 'primeng/toolbar';
 import { MoviesService } from './services/movies.service';
 import { CalendarModule } from 'primeng/calendar';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { EmailService } from './services/email.service';
+import { CustomEmailValidator } from './validators/custom-email.validator';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CalendarModule,
   ],
   providers: [
-      MoviesService
+      MoviesService,
+      EmailService,
+      CustomEmailValidator,
   ],
   bootstrap: [AppComponent],
   entryComponents: [

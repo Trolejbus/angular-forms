@@ -47,3 +47,17 @@ input.ng-invalid.ng-touched {
     margin-top: 20px;
     margin-left: 10px;
 }
+
+:host ::ng-deep .birth-date {
+     input {
+        height: 45px;
+    }
+}
+
+.error {
+    color: red;
+}
+
+.valid {
+    color: green;
+}

@@ -1,21 +1,21 @@
 <div class="form-container">
     <form [formGroup]="submitFormGroup">
-        <h1 class="amatic-bolded header-text">Spędź z nami czas</h1>
+        <h1 class="amatic-bolded header-text">Plan your afternoon with us</h1>
         <div class="form-group row">
-            <label for="staticEmail" class="col-sm-3 col-form-label amatic">Imię i Nazwisko *</label>
+            <label for="staticEmail" class="col-sm-3 col-form-label amatic">Name and Surname *</label>
             <div class="col-sm-9">
                 <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
 
-                    <input type="text" pInputText placeholder="Imię i nazwisko" formControlName="name" />
+                    <input type="text" pInputText placeholder="Name and Surname" formControlName="name" />
 
                     <small *ngIf="submitFormGroup.get('name').touched &&
-                        submitFormGroup.get('name').hasError('required')" id="passwordHelpInline" class="text-muted error-text">
-                       Pole jest wymagane
+                        submitFormGroup.get('name').hasError('required')" class="text-muted error-text">
+                        Field is required
                     </small>
                     <small *ngIf="submitFormGroup.get('name').touched &&
-                        submitFormGroup.get('name').hasError('maxlength')" id="passwordHelpInline" class="text-muted error-text">
-                        Imię jest zbyt długie
+                        submitFormGroup.get('name').hasError('maxlength')" class="text-muted error-text">
+                        Name is to long
                      </small>
 
                 </div>
@@ -27,39 +27,62 @@
             <div class="col-sm-9">
               <div class="ui-inputgroup">
                 <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                <input #nameControl type="text" pInputText placeholder="pesel" formControlName="pesel">
+                <input type="text" pInputText placeholder="Pesel" formControlName="pesel">
+                <small *ngIf="submitFormGroup.get('pesel').touched &&
+                        submitFormGroup.get('pesel').hasError('required')" class="text-muted error-text">
+                    This field is required
+                </small>
               </div>
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="staticEmail" class="col-sm-3 col-form-label amatic">Data urodzenia</label>
+            <label for="staticEmail" class="col-sm-3 col-form-label amatic">Birth date</label>
             <div class="col-sm-9">
               <div class="ui-inputgroup">
                 <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                <p-calendar formControlName="birthdate"></p-calendar>
-              </div>
+                <p-calendar class="birth-date" formControlName="birthdate" [dateFormat]="'yy/mm/dd'"></p-calendar>
+                <small *ngIf="submitFormGroup.hasError('invalid-birthDate-pesel-connection')" class="text-muted error-text">
+                    PESEL and birth date are invalid
+                </small>
+                <small *ngIf="submitFormGroup.get('pesel').touched &&
+                        submitFormGroup.get('pesel').hasError('required')" class="text-muted error-text">
+                    This field is required
+                </small>
+            </div>
             </div>
         </div>
+
+        
 
 
         <div class="form-group row">
             <label for="staticEmail" class="col-sm-3 col-form-label amatic">Email</label>
             <div class="col-sm-9">
-              <div class="ui-inputgroup">
-                <span class="ui-inputgroup-addon"><i class="pi pi-envelope" style="line-height: 1.25;"></i></span>
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-envelope" style="line-height: 1.25;"></i></span>             
+                    <input type="text" pInputText placeholder="Email" formControlName="email">
+                    <span class="ui-inputgroup-addon"><i class="pi {{getEmailIcon()}}" style="line-height: 1.25;"></i></span>    
+                </div>
+                    
+                <p>
+                    <small class="text-muted">
+                        Wpisz swojego maila, a otrzymasz przypomnienie, oraz dodatkowe materiały.
+                    </small>
+                </p>
+                <small *ngIf="submitFormGroup.get('email').touched &&
+                    submitFormGroup.get('email').hasError('required')" class="text-muted error-text">
+                    This field is required
+                </small>
+                <small *ngIf="submitFormGroup.get('email').hasError('emailExists')" class="text-muted error-text">
+                    Email is already in use
+                </small>
                 
-                <input type="text" pInputText placeholder="Email" formControlName="email">         
-
-            </div>
-              <small id="passwordHelpInline" class="text-muted">
-                    Wpisz swojego maila, a otrzymasz przypomnienie, oraz dodatkowe materiały.
-              </small>
             </div>
         </div>
 
         <div class="form-group row">
-            <label class="col-sm-3 col-form-label amatic">Kim jesteś?</label>
+            <label class="col-sm-3 col-form-label amatic">Who are you?</label>
             <div class="col-sm-9">
                 <app-picture-component formControlName="type"></app-picture-component>        
             </div>
@@ -78,15 +101,14 @@
                 [styleClass]="ui-button-secondary"
                 (click)="test($event)"></p-button>
             <p-button
-                label="Wyczyść"
+                label="Clear"
                 [styleClass]="ui-button-secondary"
                 (click)="clear($event)"></p-button>
             <p-button
                 [disabled]="submitFormGroup.invalid"
-
                 class="submit-button"
                 [styleClass]="submitting ? 'ui-button-secondary' : 'ui-button-primary'"
-                [label]="submitting ? 'Zapisuję' : 'Zapisz się'"
+                [label]="submitting ? 'Submitting' : 'Submit'"
                 [icon]="submitting ? 'pi pi-spin pi-spinner' : 'pi pi-check'"
                 iconPos="left"
                 (click)="submit($event)"></p-button>
